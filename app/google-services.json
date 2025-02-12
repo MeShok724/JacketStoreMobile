@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "234804240992",
+    "project_id": "jacketstore-a7a06",
+    "storage_bucket": "jacketstore-a7a06.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:234804240992:android:3044d0365cb07feabe5905",
+        "android_client_info": {
+          "package_name": "com.example.jacketstoremobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAt6rbvEJYUG8WNKvu6dzRHosBU6DlCvFU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

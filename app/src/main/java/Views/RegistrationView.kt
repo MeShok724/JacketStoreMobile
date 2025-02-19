@@ -1,6 +1,8 @@
 package Views
 
+import Views.Elements.MyButton
 import Views.Elements.MyInputField
+import Views.Elements.MySubButton
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,7 +25,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 @Composable
-fun LoginView() {
+fun RegistrationView() {
     val auth = Firebase.auth
 
     val emailState = remember {
@@ -32,9 +34,6 @@ fun LoginView() {
     val passwordState = remember {
         mutableStateOf("")
     }
-
-    if (auth.currentUser != null)
-        LoginSuccessHandler()
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -52,25 +51,21 @@ fun LoginView() {
             passwordState.value = it
         }
         Spacer(modifier = Modifier.height(10.dp))
-        Button(onClick = { signIn(auth, emailState.value, passwordState.value)}) { Text(text = "Sign In") }
+        MyButton("Sign Up") {signUp(auth, emailState.value, passwordState.value)}
         Spacer(modifier = Modifier.height(10.dp))
-        Button(onClick = { }) { Text(text = "Sign Up") }
+        MySubButton("Sign In") {}
     }
     Spacer(modifier = Modifier.height(10.dp))
 }
 
-private fun signIn(auth: FirebaseAuth, email: String, password: String){
-    auth.signInWithEmailAndPassword(email, password)
+private fun signUp(auth: FirebaseAuth, email: String, password: String){
+    auth.createUserWithEmailAndPassword(email, password)
         .addOnCompleteListener {
             if (it.isSuccessful){
-                Log.d("MyLog", "Login successful")
-                LoginSuccessHandler()
+                Log.d("MyLog", "Sign Up successful")
+
             }
             else
-                Log.d("MyLog", "Login failure")
+                Log.d("MyLog", "Sign Up failure")
         }
-}
-
-fun LoginSuccessHandler() {
-    TODO("Not yet implemented")
 }

@@ -21,7 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.example.jacketstoremobile.models.LoginState
+import com.example.jacketstoremobile.models.states.LoginState
 import com.example.jacketstoremobile.ui.views.elements.MyButton
 import com.example.jacketstoremobile.ui.views.elements.MySubButton
 import com.example.jacketstoremobile.viewModels.LoginViewModel

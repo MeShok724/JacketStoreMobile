@@ -1,11 +1,8 @@
 package com.example.jacketstoremobile.viewModels
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavController
-import com.example.jacketstoremobile.models.LoginState
-import com.google.firebase.auth.FirebaseAuth
+import com.example.jacketstoremobile.models.states.LoginState
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.flow.MutableStateFlow

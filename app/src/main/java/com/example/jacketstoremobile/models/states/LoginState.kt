@@ -1,4 +1,4 @@
-package com.example.jacketstoremobile.models
+package com.example.jacketstoremobile.models.states
 
 sealed class LoginState {
     data object Idle: LoginState()

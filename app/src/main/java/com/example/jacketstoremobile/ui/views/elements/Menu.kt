@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.example.jacketstoremobile.models.MenuState
+import com.example.jacketstoremobile.models.states.MenuState
 import com.example.jacketstoremobile.viewModels.MenuViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

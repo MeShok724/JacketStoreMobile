@@ -1,7 +1,7 @@
 package com.example.jacketstoremobile.viewModels
 
 import androidx.lifecycle.ViewModel
-import com.example.jacketstoremobile.models.MenuState
+import com.example.jacketstoremobile.models.states.MenuState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 

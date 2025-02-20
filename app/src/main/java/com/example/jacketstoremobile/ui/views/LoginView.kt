@@ -1,6 +1,6 @@
-package com.example.jacketstoremobile.ui.Views
+package com.example.jacketstoremobile.ui.views
 
-import com.example.jacketstoremobile.ui.Views.Elements.MyInputField
+import com.example.jacketstoremobile.ui.views.elements.MyInputField
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -11,12 +11,10 @@ import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,14 +22,12 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.jacketstoremobile.models.LoginState
-import com.example.jacketstoremobile.ui.Views.Elements.MyButton
-import com.example.jacketstoremobile.ui.Views.Elements.MySubButton
+import com.example.jacketstoremobile.ui.views.elements.MyButton
+import com.example.jacketstoremobile.ui.views.elements.MySubButton
 import com.example.jacketstoremobile.viewModels.LoginViewModel
-import kotlinx.coroutines.launch
 
 @Composable
 fun LoginView(navController: NavController, viewModel: LoginViewModel = viewModel()) {
-    val coroutineScope = rememberCoroutineScope()
 
     val emailState = remember { mutableStateOf("")}
     val passwordState = remember { mutableStateOf("")}
@@ -55,7 +51,7 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel = viewMode
             passwordState.value = it
         }
         Spacer(modifier = Modifier.height(10.dp))
-        MyButton("Sign In") { coroutineScope.launch { viewModel.signIn(emailState.value, passwordState.value) } }
+        MyButton("Sign In") { viewModel.signIn(emailState.value, passwordState.value) }
         Spacer(modifier = Modifier.height(10.dp))
         MySubButton("Sign Up") { navController.navigate("registration") }
         Spacer(modifier = Modifier.height(10.dp))

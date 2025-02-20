@@ -4,9 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.jacketstoremobile.ui.Views.LoginView
-import com.example.jacketstoremobile.ui.Views.MainView
-import com.example.jacketstoremobile.ui.Views.RegistrationView
+import com.example.jacketstoremobile.ui.views.LoginView
+import com.example.jacketstoremobile.ui.views.MainView
+import com.example.jacketstoremobile.ui.views.RegistrationView
 
 @Composable
 fun AppNavHost(navController: NavHostController) {

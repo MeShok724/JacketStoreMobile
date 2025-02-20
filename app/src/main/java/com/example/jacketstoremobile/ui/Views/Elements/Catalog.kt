@@ -1,4 +1,4 @@
-package Views
+package com.example.jacketstoremobile.ui.Views.Elements
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,7 +13,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -23,13 +22,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import com.example.jacketstoremobile.data.Jacket
+import com.example.jacketstoremobile.models.Jacket
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 @Composable
-fun CatalogView() {
+fun Catalog(navController: NavController) {
     val jackets = remember {
         mutableStateOf(emptyList<Jacket>())
     }
@@ -75,7 +75,8 @@ fun CatalogView() {
                     Text(
                         text = jacket.name,
                         modifier = Modifier.fillMaxWidth()
-                            .align(Alignment.CenterHorizontally),
+                            .align(Alignment.CenterHorizontally)
+                            .padding(bottom = 10.dp),
                         textAlign = TextAlign.Center
                     )
                 }

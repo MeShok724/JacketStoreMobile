@@ -1,8 +1,8 @@
-package Views
+package com.example.jacketstoremobile.ui.Views
 
-import Views.Elements.MyButton
-import Views.Elements.MyInputField
-import Views.Elements.MySubButton
+import com.example.jacketstoremobile.ui.Views.Elements.MyButton
+import com.example.jacketstoremobile.ui.Views.Elements.MyInputField
+import com.example.jacketstoremobile.ui.Views.Elements.MySubButton
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,21 +11,19 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 @Composable
-fun RegistrationView() {
+fun RegistrationView(navController: NavController) {
     val auth = Firebase.auth
 
     val emailState = remember {
@@ -51,21 +49,29 @@ fun RegistrationView() {
             passwordState.value = it
         }
         Spacer(modifier = Modifier.height(10.dp))
-        MyButton("Sign Up") {signUp(auth, emailState.value, passwordState.value)}
+        MyButton("Sign Up") { signUp(auth, emailState.value, passwordState.value, navController) }
         Spacer(modifier = Modifier.height(10.dp))
-        MySubButton("Sign In") {}
+        MySubButton("Sign In") {buttonSignInClick(navController)}
     }
     Spacer(modifier = Modifier.height(10.dp))
 }
 
-private fun signUp(auth: FirebaseAuth, email: String, password: String){
+private fun registrationSuccessHandler(navController: NavController) {
+    Log.d("MyLog", "Sign Up successful")
+    navController.navigate("main")
+}
+
+private fun signUp(auth: FirebaseAuth, email: String, password: String, navController: NavController){
     auth.createUserWithEmailAndPassword(email, password)
         .addOnCompleteListener {
             if (it.isSuccessful){
-                Log.d("MyLog", "Sign Up successful")
-
+                registrationSuccessHandler(navController)
             }
             else
                 Log.d("MyLog", "Sign Up failure")
         }
+}
+
+private fun buttonSignInClick(navController: NavController){
+    navController.navigate("login")
 }

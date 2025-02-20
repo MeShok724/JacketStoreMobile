@@ -1,4 +1,4 @@
-package Views.Elements
+package com.example.jacketstoremobile.ui.Views.Elements
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Button

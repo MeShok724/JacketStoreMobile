@@ -1,4 +1,4 @@
-package com.example.jacketstoremobile.data
+package com.example.jacketstoremobile.models
 
 data class Jacket(
     var id: String = "",

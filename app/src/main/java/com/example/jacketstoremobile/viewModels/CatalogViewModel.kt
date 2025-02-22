@@ -36,4 +36,8 @@ class CatalogViewModel: ViewModel() {
         }
 
     }
+
+    fun jacketClick(jacket: Jacket){
+        _catState.value = CatalogState.ItemClick(jacket.id)
+    }
 }

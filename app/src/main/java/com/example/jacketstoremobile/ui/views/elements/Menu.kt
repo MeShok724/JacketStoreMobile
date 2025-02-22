@@ -66,7 +66,7 @@ fun Menu(navController: NavController, menuViewModel: MenuViewModel = viewModel(
 
     when (menuState){
         is MenuState.Idle -> {}//todo
-        is MenuState.Catalog -> {navController.navigate("main")}
+        is MenuState.Catalog -> {navController.navigate("catalog")}
         is MenuState.Favorites -> {}//todo
         is MenuState.Profile -> {}//todo
         is MenuState.SignOut -> {

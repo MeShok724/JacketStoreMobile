@@ -27,12 +27,14 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import com.example.jacketstoremobile.models.Jacket
 import com.example.jacketstoremobile.models.states.CatalogState
+import com.example.jacketstoremobile.models.states.JacketState
 import com.example.jacketstoremobile.ui.views.elements.Menu
 import com.example.jacketstoremobile.viewModels.CatalogViewModel
 
 @Composable
-fun MainView(navController: NavController, catViewModel: CatalogViewModel = viewModel()) {
+fun CatalogView(navController: NavController, catViewModel: CatalogViewModel = viewModel()) {
     val catState by catViewModel.catState.collectAsState()
     val jackets by catViewModel.jackets.collectAsState()
 
@@ -56,7 +58,8 @@ fun MainView(navController: NavController, catViewModel: CatalogViewModel = view
                             .padding(10.dp),
                         colors = CardDefaults.cardColors(
                             containerColor = Color.LightGray
-                        )
+                        ),
+                        onClick = {catViewModel.jacketClick(jacket)}
                     ) {
                         AsyncImage(
                             model = jacket.imageUrls[0],
@@ -84,7 +87,7 @@ fun MainView(navController: NavController, catViewModel: CatalogViewModel = view
                 is CatalogState.Filter -> {}
                 is CatalogState.Search -> {}
                 is CatalogState.Sorting -> {}
-                is CatalogState.ItemClick -> {}
+                is CatalogState.ItemClick -> { navController.navigate("jacket/${(catState as CatalogState.ItemClick).id}") }
                 is CatalogState.Error -> {Text(text = "Error: ${(catState as CatalogState.Error).message}", color = Color.Red)}
             }
         }

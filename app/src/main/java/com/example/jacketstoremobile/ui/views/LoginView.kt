@@ -58,7 +58,7 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel = viewMode
 
         when (loginState) {
             is LoginState.Success -> {
-                navController.navigate("main")
+                navController.navigate("catalog")
             }
             is LoginState.Error -> {
                 Text(text = "Error: ${(loginState as LoginState.Error).message}", color = Color.Red)

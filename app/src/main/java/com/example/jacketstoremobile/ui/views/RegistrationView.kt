@@ -55,7 +55,7 @@ fun RegistrationView(navController: NavController, regModelView: RegModelView = 
 
         when (regState) {
             is LoginState.Success -> {
-                navController.navigate("main")
+                navController.navigate("catalog")
             }
             is LoginState.Error -> {
                 Text(text = "Error: ${(regState as LoginState.Error).message}", color = Color.Red)

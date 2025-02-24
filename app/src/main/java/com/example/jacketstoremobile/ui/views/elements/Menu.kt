@@ -65,10 +65,10 @@ fun Menu(navController: NavController, menuViewModel: MenuViewModel = viewModel(
     }
 
     when (menuState){
-        is MenuState.Idle -> {}//todo
+        is MenuState.Idle -> {}
         is MenuState.Catalog -> {navController.navigate("catalog")}
         is MenuState.Favorites -> {}//todo
-        is MenuState.Profile -> {}//todo
+        is MenuState.Profile -> {navController.navigate("user")}
         is MenuState.SignOut -> {
             Firebase.auth.signOut()
             navController.navigate("login")

@@ -9,10 +9,10 @@ class MenuViewModel : ViewModel() {
     private val _menuState = MutableStateFlow<MenuState>(MenuState.Idle)
     val menuState: StateFlow<MenuState> = _menuState
     val menuList = listOf(
-        "Catalog",
-        "Favorites",
-        "Profile",
-        "Sign Out"
+        "Каталог",
+        "Избранное",
+        "Профиль",
+        "Выйти из аккаунта"
     )
 
     fun onMenuClick(item: String) {

@@ -43,11 +43,11 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel = viewMode
         verticalArrangement = Arrangement.Center
     )
     {
-        MyInputField(emailState.value, "Your email") {
+        MyInputField(emailState.value, "Введите email") {
             emailState.value = it
         }
         Spacer(modifier = Modifier.height(10.dp))
-        MyInputField(passwordState.value, "Your password") {
+        MyInputField(passwordState.value, "Введите пароль") {
             passwordState.value = it
         }
         Spacer(modifier = Modifier.height(10.dp))

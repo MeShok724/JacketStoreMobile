@@ -10,6 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.jacketstoremobile.ui.views.LoginView
 import com.example.jacketstoremobile.ui.views.CatalogView
+import com.example.jacketstoremobile.ui.views.FavoritesView
 import com.example.jacketstoremobile.ui.views.JacketView
 import com.example.jacketstoremobile.ui.views.RegistrationView
 import com.example.jacketstoremobile.ui.views.UserView
@@ -20,13 +21,16 @@ fun AppNavHost(navController: NavHostController) {
     NavHost(navController, startDestination = "login") {
         composable("login") { LoginView(navController) }
         composable("registration") { RegistrationView(navController) }
-        composable("catalog") { CatalogView(navController)}
+        composable("catalog") { CatalogView(navController) }
         composable("user") { UserView(navController) }
+        composable("favorites") { FavoritesView(navController) }
         composable(
             route = "jacket/{jacketId}",
-            arguments = listOf(navArgument("jacketId"){type = NavType.StringType}))
+            arguments = listOf(navArgument("jacketId") { type = NavType.StringType })
+        )
         { backStackEntry ->
             val jacketId = backStackEntry.arguments?.getString("jacketId") ?: ""
-            JacketView(navController, jacketId)}
+            JacketView(navController, jacketId)
+        }
     }
 }

@@ -104,7 +104,7 @@ fun RegistrationView(navController: NavController, regModelView: RegModelView = 
             }
 
             is LoginState.Error -> {
-                Text(text = "Error: ${(regState as LoginState.Error).message}", color = Color.Red)
+                Text(text = "Ошибка: ${(regState as LoginState.Error).message}", color = Color.Red)
             }
 
             is LoginState.Loading -> {

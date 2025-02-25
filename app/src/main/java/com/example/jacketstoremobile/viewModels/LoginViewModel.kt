@@ -22,10 +22,10 @@ class LoginViewModel : ViewModel() {
                 if (result.user != null) {
                     _loginState.value = LoginState.Success
                 } else {
-                    _loginState.value = LoginState.Error("Wrong email or password")
+                    _loginState.value = LoginState.Error("Неправильный email или пароль")
                 }
             } catch (e: Exception) {
-                _loginState.value = LoginState.Error(e.message ?: "Unknown error")
+                _loginState.value = LoginState.Error(e.message ?: "Неизвестная ошибка")
             }
         }
     }

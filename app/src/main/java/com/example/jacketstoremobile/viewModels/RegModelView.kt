@@ -4,7 +4,6 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.jacketstoremobile.models.MyUserData
 import com.example.jacketstoremobile.models.states.LoginState
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -31,10 +30,10 @@ class RegModelView : ViewModel() {
                     createUserDoc(email, name, age, phone, address, description, size)
                     _regState.value = LoginState.Success
                 } else {
-                    _regState.value = LoginState.Error("Registration failure")
+                    _regState.value = LoginState.Error("Ошибка регистрации")
                 }
             } catch (e: Exception) {
-                _regState.value = LoginState.Error(e.message ?: "Unknown error")
+                _regState.value = LoginState.Error(e.message ?: "Неизвестная ошибка")
             }
         }
     }

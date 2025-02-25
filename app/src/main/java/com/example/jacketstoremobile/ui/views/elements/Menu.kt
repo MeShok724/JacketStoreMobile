@@ -29,33 +29,51 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 @Composable
-fun Menu(navController: NavController, menuViewModel: MenuViewModel = viewModel()){
+fun Menu(navController: NavController, menuViewModel: MenuViewModel = viewModel()) {
 
     val menuState by
     menuViewModel.menuState.collectAsState()
 
     ModalNavigationDrawer(
-        modifier = Modifier.fillMaxWidth(0.7f)
+        modifier = Modifier
+            .fillMaxWidth(0.7f)
             .systemBarsPadding(),
         drawerContent = {
             Column(
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier
+                    .fillMaxSize()
                     .background(Color.LightGray),
                 horizontalAlignment = Alignment.CenterHorizontally
             )
             {
                 Spacer(modifier = Modifier.height(100.dp))
-                Box(modifier = Modifier.fillMaxWidth().height(1.dp).background(Color.DarkGray))
-                LazyColumn(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
+                Box(modifier = Modifier
+                    .fillMaxWidth()
+                    .height(1.dp)
+                    .background(Color.DarkGray))
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
                     items(menuViewModel.menuList) { item ->
-                        Column(modifier = Modifier.fillMaxWidth().clickable{ menuViewModel.onMenuClick(item) }, horizontalAlignment = Alignment.CenterHorizontally) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable { menuViewModel.onMenuClick(item) },
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
                             Spacer(modifier = Modifier.height(20.dp))
                             Text(
                                 text = item,
                                 fontSize = 20.sp,
                             )
                             Spacer(modifier = Modifier.height(20.dp))
-                            Box(modifier = Modifier.fillMaxWidth().height(1.dp).background(Color.DarkGray))
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(1.dp)
+                                    .background(Color.DarkGray)
+                            )
                         }
                     }
                 }
@@ -64,11 +82,20 @@ fun Menu(navController: NavController, menuViewModel: MenuViewModel = viewModel(
     ) {
     }
 
-    when (menuState){
+    when (menuState) {
         is MenuState.Idle -> {}
-        is MenuState.Catalog -> {navController.navigate("catalog")}
-        is MenuState.Favorites -> {}//todo
-        is MenuState.Profile -> {navController.navigate("user")}
+        is MenuState.Catalog -> {
+            navController.navigate("catalog")
+        }
+
+        is MenuState.Favorites -> {
+            navController.navigate("favorites")
+        }
+
+        is MenuState.Profile -> {
+            navController.navigate("user")
+        }
+
         is MenuState.SignOut -> {
             Firebase.auth.signOut()
             navController.navigate("login")

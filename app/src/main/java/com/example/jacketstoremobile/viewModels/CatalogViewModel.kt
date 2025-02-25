@@ -28,11 +28,11 @@ class CatalogViewModel: ViewModel() {
                     _jackets.value = task.result.toObjects(Jacket::class.java)
                     _catState.value = CatalogState.Idle
                 } else {
-                    _catState.value = CatalogState.Error("Failed to load data")
+                    _catState.value = CatalogState.Error("Не удалось загрузить данные")
                 }
             }
         } catch (e: Exception){
-            _catState.value = CatalogState.Error(e.message ?: "Unknown error")
+            _catState.value = CatalogState.Error(e.message ?: "Неизвестная ошибка")
         }
 
     }

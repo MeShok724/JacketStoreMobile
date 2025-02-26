@@ -27,7 +27,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.jacketstoremobile.models.states.CatalogState
-import com.example.jacketstoremobile.ui.views.elements.Menu
+import com.example.jacketstoremobile.ui.views.elements.TopNavigationBar
 import com.example.jacketstoremobile.viewModels.FavViewModel
 
 @Composable
@@ -41,6 +41,7 @@ fun FavoritesView(navController: NavController, favViewModel: FavViewModel = vie
             .systemBarsPadding(),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
+        TopNavigationBar(navController)
         LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
@@ -95,7 +96,4 @@ fun FavoritesView(navController: NavController, favViewModel: FavViewModel = vie
             }
         }
     }
-
-    Menu(navController)
-
 }

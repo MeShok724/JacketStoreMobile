@@ -23,6 +23,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.jacketstoremobile.models.states.LoginState
 import com.example.jacketstoremobile.ui.views.elements.MyButton
+import com.example.jacketstoremobile.ui.views.elements.MyPasswordField
 import com.example.jacketstoremobile.ui.views.elements.MySubButton
 import com.example.jacketstoremobile.viewModels.LoginViewModel
 
@@ -47,7 +48,7 @@ fun LoginView(navController: NavController, viewModel: LoginViewModel = viewMode
             emailState.value = it
         }
         Spacer(modifier = Modifier.height(10.dp))
-        MyInputField(passwordState.value, "Введите пароль") {
+        MyPasswordField(passwordState.value, "Введите пароль") {
             passwordState.value = it
         }
         Spacer(modifier = Modifier.height(10.dp))

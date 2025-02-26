@@ -9,6 +9,7 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -29,6 +30,30 @@ fun MyInputField(
             unfocusedIndicatorColor = Color.Transparent,
             focusedIndicatorColor = Color.Transparent,
         ),
+        modifier = Modifier.fillMaxWidth().border(2.dp, Color.Black, RoundedCornerShape(25.dp)),
+        singleLine = true
+    )
+}
+
+@Composable
+fun MyPasswordField(
+    text: String,
+    label: String,
+    onValueChange: (String) -> Unit
+) {
+    TextField(
+        value = text, placeholder = { Text(label) },
+        onValueChange = {
+            onValueChange(it)
+        },
+        shape = RoundedCornerShape(25.dp),
+        colors = TextFieldDefaults.colors(
+            unfocusedContainerColor = Color.White,
+            focusedContainerColor = Color.White,
+            unfocusedIndicatorColor = Color.Transparent,
+            focusedIndicatorColor = Color.Transparent,
+        ),
+        visualTransformation = PasswordVisualTransformation(),
         modifier = Modifier.fillMaxWidth().border(2.dp, Color.Black, RoundedCornerShape(25.dp)),
         singleLine = true
     )

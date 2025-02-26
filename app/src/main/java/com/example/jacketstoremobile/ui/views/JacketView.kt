@@ -26,11 +26,10 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import com.example.jacketstoremobile.models.states.CatalogState
 import com.example.jacketstoremobile.models.states.JacketState
-import com.example.jacketstoremobile.ui.views.elements.Menu
 import com.example.jacketstoremobile.ui.views.elements.MyButton
 import com.example.jacketstoremobile.ui.views.elements.MySubButton
+import com.example.jacketstoremobile.ui.views.elements.TopNavigationBar
 import com.example.jacketstoremobile.viewModels.JacketViewModel
 
 @Composable
@@ -43,105 +42,105 @@ fun JacketView(
     val jacket by jacketViewModel.jacket.collectAsState()
     val isFavorite by jacketViewModel.isFavorite.collectAsState()
 
-    LazyColumn(modifier = Modifier.fillMaxWidth()) {
-        item {
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                if (jacket.id.isNotEmpty() && jacketState == JacketState.Idle) {
-                    Spacer(modifier = Modifier.height(20.dp))
-                    AsyncImage(
-                        model = jacket.imageUrls[0],
-                        contentDescription = "Jacket Image",
-                        modifier = Modifier
-                            .fillMaxWidth(0.8f)
-                            .padding(20.dp)
-                    )
-                    Spacer(modifier = Modifier.height(15.dp))
-                    Text(
-                        text = jacket.name,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .align(Alignment.CenterHorizontally)
-                            .padding(bottom = 10.dp),
-                        textAlign = TextAlign.Center,
-                        style = TextStyle(fontSize = 20.sp)
-                    )
-                    Spacer(modifier = Modifier.height(15.dp))
-                    Text(
-                        text = jacket.description,
-                        modifier = Modifier
-                            .fillMaxWidth(0.8f)
-                            .align(Alignment.CenterHorizontally)
-                            .padding(bottom = 10.dp),
-                        textAlign = TextAlign.Center,
-                    )
-                    Spacer(modifier = Modifier.height(15.dp))
-                    Text(
-                        text = "Характеристики",
-                        modifier = Modifier
-                            .fillMaxWidth(0.7f)
-                            .align(Alignment.CenterHorizontally),
-                        textAlign = TextAlign.Center,
-                        style = TextStyle(fontSize = 15.sp)
-                    )
-                    Spacer(modifier = Modifier.height(10.dp))
-                    Text(
-                        text = "Сезон: ${jacket.season}",
-                        modifier = Modifier
-                            .fillMaxWidth(0.7f)
-                            .align(Alignment.CenterHorizontally)
-                    )
-                    Spacer(modifier = Modifier.height(10.dp))
-                    Text(
-                        text = "Тип: ${jacket.type}",
-                        modifier = Modifier
-                            .fillMaxWidth(0.7f)
-                            .align(Alignment.CenterHorizontally)
-                    )
-                    Spacer(modifier = Modifier.height(15.dp))
-                    if (isFavorite)
-                        MySubButton("Удалить из избранного") { jacketViewModel.delFromFavorites() }
-                    else
-                        MyButton("Добавить в избранное") { jacketViewModel.addToFavorites() }
-                    Spacer(modifier = Modifier.height(15.dp))
-                    Text(
-                        text = "Фото",
-                        modifier = Modifier
-                            .fillMaxWidth(0.7f)
-                            .align(Alignment.CenterHorizontally),
-                        textAlign = TextAlign.Center,
-                        style = TextStyle(fontSize = 15.sp)
-                    )
-                    Spacer(modifier = Modifier.height(10.dp))
+    Column {
+        TopNavigationBar(navController)
+        LazyColumn(modifier = Modifier.fillMaxWidth()) {
+            item {
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    if (jacket.id.isNotEmpty() && jacketState == JacketState.Idle) {
+                        Spacer(modifier = Modifier.height(20.dp))
+                        AsyncImage(
+                            model = jacket.imageUrls[0],
+                            contentDescription = "Jacket Image",
+                            modifier = Modifier
+                                .fillMaxWidth(0.8f)
+                                .padding(20.dp)
+                        )
+                        Spacer(modifier = Modifier.height(15.dp))
+                        Text(
+                            text = jacket.name,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .align(Alignment.CenterHorizontally)
+                                .padding(bottom = 10.dp),
+                            textAlign = TextAlign.Center,
+                            style = TextStyle(fontSize = 20.sp)
+                        )
+                        Spacer(modifier = Modifier.height(15.dp))
+                        Text(
+                            text = jacket.description,
+                            modifier = Modifier
+                                .fillMaxWidth(0.8f)
+                                .align(Alignment.CenterHorizontally)
+                                .padding(bottom = 10.dp),
+                            textAlign = TextAlign.Center,
+                        )
+                        Spacer(modifier = Modifier.height(15.dp))
+                        Text(
+                            text = "Характеристики",
+                            modifier = Modifier
+                                .fillMaxWidth(0.7f)
+                                .align(Alignment.CenterHorizontally),
+                            textAlign = TextAlign.Center,
+                            style = TextStyle(fontSize = 15.sp)
+                        )
+                        Spacer(modifier = Modifier.height(10.dp))
+                        Text(
+                            text = "Сезон: ${jacket.season}",
+                            modifier = Modifier
+                                .fillMaxWidth(0.7f)
+                                .align(Alignment.CenterHorizontally)
+                        )
+                        Spacer(modifier = Modifier.height(10.dp))
+                        Text(
+                            text = "Тип: ${jacket.type}",
+                            modifier = Modifier
+                                .fillMaxWidth(0.7f)
+                                .align(Alignment.CenterHorizontally)
+                        )
+                        Spacer(modifier = Modifier.height(15.dp))
+                        if (isFavorite)
+                            MySubButton("Удалить из избранного") { jacketViewModel.delFromFavorites() }
+                        else
+                            MyButton("Добавить в избранное") { jacketViewModel.addToFavorites() }
+                        Spacer(modifier = Modifier.height(15.dp))
+                        Text(
+                            text = "Фото",
+                            modifier = Modifier
+                                .fillMaxWidth(0.7f)
+                                .align(Alignment.CenterHorizontally),
+                            textAlign = TextAlign.Center,
+                            style = TextStyle(fontSize = 15.sp)
+                        )
+                        Spacer(modifier = Modifier.height(10.dp))
 
-                    LazyRow(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .heightIn(0.dp, 300.dp)
-                    ) {
-                        items(jacket.imageUrls.filter { it.isNotEmpty() }) { imageUrl ->
-                            AsyncImage(
-                                model = imageUrl,
-                                contentDescription = "Jacket Image",
-                                modifier = Modifier
-                                    .fillMaxWidth(0.8f)
-                                    .padding(20.dp)
+                        LazyRow(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .heightIn(0.dp, 300.dp)
+                        ) {
+                            items(jacket.imageUrls.filter { it.isNotEmpty() }) { imageUrl ->
+                                AsyncImage(
+                                    model = imageUrl,
+                                    contentDescription = "Jacket Image",
+                                    modifier = Modifier
+                                        .fillMaxWidth(0.8f)
+                                        .padding(20.dp)
 
-                            )
+                                )
+                            }
                         }
                     }
-                }
-                when (jacketState){
-                    is JacketState.Error -> { Text(text = "Error: ${(jacketState as JacketState.Error).message}", color = Color.Red) }
-                    is JacketState.Idle -> {}
-                    is JacketState.Loading -> { CircularProgressIndicator() }
+                    when (jacketState){
+                        is JacketState.Error -> { Text(text = "Error: ${(jacketState as JacketState.Error).message}", color = Color.Red) }
+                        is JacketState.Idle -> {}
+                        is JacketState.Loading -> { CircularProgressIndicator() }
+                    }
                 }
             }
         }
-
     }
-
-    Menu(navController)
 }

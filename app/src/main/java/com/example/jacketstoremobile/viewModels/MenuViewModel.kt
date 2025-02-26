@@ -12,7 +12,7 @@ class MenuViewModel : ViewModel() {
         "Каталог",
         "Избранное",
         "Профиль",
-        "Выйти из аккаунта"
+        "Выйти"
     )
 
     fun onMenuClick(item: String) {

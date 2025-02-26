@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.jacketstoremobile.models.states.LoginState
+import com.example.jacketstoremobile.ui.views.elements.MyPasswordField
 import com.example.jacketstoremobile.viewModels.RegModelView
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -54,7 +55,7 @@ fun RegistrationView(navController: NavController, regModelView: RegModelView = 
             emailState.value = it
         }
         Spacer(modifier = Modifier.height(10.dp))
-        MyInputField(passwordState.value, "Введите пароль") {
+        MyPasswordField(passwordState.value, "Введите пароль") {
             passwordState.value = it
         }
         Spacer(modifier = Modifier.height(10.dp))

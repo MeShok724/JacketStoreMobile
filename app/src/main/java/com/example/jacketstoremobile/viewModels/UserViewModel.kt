@@ -34,7 +34,7 @@ class UserViewModel: ViewModel() {
 
         val credential = EmailAuthProvider.getCredential(email, password)
         user.reauthenticate(credential)
-            .addOnCompleteListener {
+            .addOnSuccessListener {
                 Firebase.firestore.collection("users").document(uid).delete()
                     .addOnCompleteListener{
                         user.delete()

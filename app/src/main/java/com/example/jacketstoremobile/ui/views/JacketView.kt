@@ -19,6 +19,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -58,6 +59,7 @@ fun JacketView(
                             modifier = Modifier
                                 .fillMaxWidth(0.8f)
                                 .padding(20.dp)
+                                .height(400.dp)
                         )
                         Spacer(modifier = Modifier.height(15.dp))
                         Text(
@@ -111,7 +113,8 @@ fun JacketView(
                             text = "Фото",
                             modifier = Modifier
                                 .fillMaxWidth(0.7f)
-                                .align(Alignment.CenterHorizontally),
+                                .align(Alignment.CenterHorizontally)
+                                .padding(top = 10.dp),
                             textAlign = TextAlign.Center,
                             style = TextStyle(fontSize = 15.sp)
                         )
@@ -120,16 +123,17 @@ fun JacketView(
                         LazyRow(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .heightIn(0.dp, 300.dp)
+                                //.heightIn(0.dp, 300.dp)
                         ) {
                             items(jacket.imageUrls.filter { it.isNotEmpty() }) { imageUrl ->
                                 AsyncImage(
                                     model = imageUrl,
                                     contentDescription = "Jacket Image",
+                                    contentScale = ContentScale.Crop,
                                     modifier = Modifier
                                         .fillMaxWidth(0.8f)
                                         .padding(20.dp)
-
+                                        .height(350.dp)
                                 )
                             }
                         }

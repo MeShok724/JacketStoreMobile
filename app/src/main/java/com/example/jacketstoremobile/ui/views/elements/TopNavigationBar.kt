@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.jacketstoremobile.models.states.MenuState
+import com.example.jacketstoremobile.ui.theme.MyGray
 import com.example.jacketstoremobile.viewModels.MenuViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -36,7 +37,7 @@ fun TopNavigationBar(navController: NavController, menuViewModel: MenuViewModel 
             .fillMaxWidth(),
         title = { Text(text = "Меню", fontSize = 20.sp) },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = Color.LightGray,
+            containerColor = MyGray,
             titleContentColor = Color.Black,
         ),
         actions = {

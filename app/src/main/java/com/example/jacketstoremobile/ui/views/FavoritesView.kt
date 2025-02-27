@@ -1,14 +1,11 @@
 package com.example.jacketstoremobile.ui.views
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
@@ -23,10 +20,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.jacketstoremobile.models.states.CatalogState
+import com.example.jacketstoremobile.ui.theme.MyGray
 import com.example.jacketstoremobile.ui.views.elements.TopNavigationBar
 import com.example.jacketstoremobile.viewModels.FavViewModel
 
@@ -38,14 +37,11 @@ fun FavoritesView(navController: NavController, favViewModel: FavViewModel = vie
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .systemBarsPadding(),
-        verticalArrangement = Arrangement.SpaceBetween
     ) {
         TopNavigationBar(navController)
         LazyColumn(
             modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(0.8f)
+                .fillMaxSize()
         ) {
             items(jackets) { jacket ->
                 Card(
@@ -53,27 +49,30 @@ fun FavoritesView(navController: NavController, favViewModel: FavViewModel = vie
                         .fillMaxWidth()
                         .padding(10.dp),
                     colors = CardDefaults.cardColors(
-                        containerColor = Color.LightGray
+                        containerColor = MyGray
                     ),
                     onClick = { favViewModel.jacketClick(jacket) }
                 ) {
-                    AsyncImage(
-                        model = jacket.imageUrls[0],
-                        contentDescription = "Jacket Image",
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(200.dp)
-                            .padding(10.dp)
-                    )
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text(
-                        text = jacket.name,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .align(Alignment.CenterHorizontally)
-                            .padding(bottom = 10.dp),
-                        textAlign = TextAlign.Center
-                    )
+                    Column {
+                        AsyncImage(
+                            model = jacket.imageUrls[0],
+                            contentDescription = "Jacket Image",
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(400.dp)
+                                .padding(10.dp)
+                                .padding(top = 20.dp)
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = jacket.name,
+                            modifier = Modifier.fillMaxWidth()
+                                .align(Alignment.CenterHorizontally)
+                                .padding(bottom = 20.dp),
+                            textAlign = TextAlign.Center,
+                            fontSize = 20.sp
+                        )
+                    }
                 }
             }
         }

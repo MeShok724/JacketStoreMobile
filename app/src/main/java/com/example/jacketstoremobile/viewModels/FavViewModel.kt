@@ -31,13 +31,14 @@ class FavViewModel : ViewModel() {
                     favoritesList =
                         (document.get("favorites") as? List<*>)?.mapNotNull { it as? String }
                             ?: emptyList()
-                    if (favoritesList.isEmpty())
+                    if (favoritesList.isEmpty()){
+                        _favState.value = CatalogState.Idle
                         return@addOnSuccessListener
+                    }
                     fs.collection("jacket").get()
                         .addOnSuccessListener { body ->
                             val allJackets = body.toObjects(Jacket::class.java)
                             _jackets.value = allJackets.filter { it.id in favoritesList }
-                            _favState.value = CatalogState.Idle
                         }
                         .addOnFailureListener { throw Exception("Не удалось загрузить товары") }
                 }

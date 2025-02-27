@@ -22,12 +22,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.jacketstoremobile.models.states.CatalogState
+import com.example.jacketstoremobile.ui.theme.MyGray
 import com.example.jacketstoremobile.ui.views.elements.TopNavigationBar
 import com.example.jacketstoremobile.viewModels.CatalogViewModel
 
@@ -40,7 +43,7 @@ fun CatalogView(navController: NavController, catViewModel: CatalogViewModel = v
         TopNavigationBar(navController)
         LazyColumn(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxSize()
         ) {
             items(jackets) { jacket ->
                 Card(
@@ -48,7 +51,7 @@ fun CatalogView(navController: NavController, catViewModel: CatalogViewModel = v
                         .fillMaxWidth()
                         .padding(10.dp),
                     colors = CardDefaults.cardColors(
-                        containerColor = Color.LightGray
+                        containerColor = MyGray
                     ),
                     onClick = {catViewModel.jacketClick(jacket)}
                 ) {
@@ -57,16 +60,18 @@ fun CatalogView(navController: NavController, catViewModel: CatalogViewModel = v
                         contentDescription = "Jacket Image",
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(200.dp)
+                            .height(400.dp)
                             .padding(10.dp)
+                            .padding(top = 20.dp)
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
                         text = jacket.name,
                         modifier = Modifier.fillMaxWidth()
                             .align(Alignment.CenterHorizontally)
-                            .padding(bottom = 10.dp),
-                        textAlign = TextAlign.Center
+                            .padding(bottom = 20.dp),
+                        textAlign = TextAlign.Center,
+                        fontSize = 20.sp
                     )
                 }
             }
